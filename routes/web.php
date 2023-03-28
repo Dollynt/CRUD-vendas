@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/criar_cliente', [ClienteController::class, 'index'])->name('cliente.index');
+Route::get('/criar_produto', [ClienteController::class, 'index'])->name('produto.index');
