@@ -13,7 +13,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $echo('oi')
+        return view('cliente');
     }
 
     /**
