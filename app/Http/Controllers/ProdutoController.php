@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
@@ -15,17 +17,6 @@ class ProdutoController extends Controller
     {
         return view('produto');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +25,26 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|max:255',
+            'preco' => 'required|numeric|min:0',
+            'quantidade' => 'required|integer|min:0',
+
+        ]);
+
+        $produto = new Produto;
+        $produto->nome = $request->input('nome');
+        $produto->preco = $request->input('preco');
+        $produto->quantidade = $request->input('quantidade');
+        $produto->created_at = now();
+        $produto->save();
+
+        return response()->json([
+            'nome'         => $produto->nome,
+            'preco'        => $produto->preco,
+            'quantidade'   => $produto->quantidade,
+            'registeredAt' => $produto->created_at
+        ], 201);
     }
 
     /**

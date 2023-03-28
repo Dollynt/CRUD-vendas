@@ -7,7 +7,7 @@
     <title>Criar cliente</title>
 </head>
 <body>
-    <form method="POST" action="/clientes">
+    <form method="POST" action="/criar_cliente">
         @csrf
 
         <div>
