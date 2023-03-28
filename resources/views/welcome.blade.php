@@ -11,6 +11,9 @@
     </head>
     <body class="antialiased">
         <button type="button" onclick="window.location='{{ route("cliente.create") }}'">Criar cliente</button>
-        <button type="button" onclick="window.location='{{ route("produto.create") }}'">Criar produto</button>
+        <button type="button" onclick="window.location='{{ route("produto.create") }}'">Criar produto</button><br>
+        <button type="button" onclick="window.location='{{ route("cliente.index") }}'">Lista de clientes</button>
+        <button type="button" onclick="window.location='{{ route("produto.index") }}'">Lista de produtos</button><br>
+
     </body>
 </html>
