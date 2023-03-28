@@ -15,7 +15,18 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        return view('produto');
+        $produtos = Produto::all();
+        return view('produtos.index', compact('produtos'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('produto/cadastro_produto');
     }
     /**
      * Store a newly created resource in storage.

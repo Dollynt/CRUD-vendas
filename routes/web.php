@@ -17,7 +17,13 @@ use App\Http\Controllers\ProdutoController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/criar_cliente', [ClienteController::class, 'index'])->name('cliente.index');
-Route::get('/criar_produto', [ProdutoController::class, 'index'])->name('produto.index');
+
+Route::get('/criar_cliente', [ClienteController::class, 'create'])->name('cliente.create');
+Route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.index');
 Route::post('/criar_cliente', [ClienteController::class, 'store'])->name('cliente.store');
+
+
+
+Route::get('/criar_produto', [ProdutoController::class, 'create'])->name('produto.create');
+Route::get('/produtos', [ProdutoController::class, 'index'])->name('produto.index');
 Route::post('/criar_produto', [ProdutoController::class, 'store'])->name('produto.store');

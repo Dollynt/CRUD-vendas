@@ -10,7 +10,7 @@
 
     </head>
     <body class="antialiased">
-        <button type="button" onclick="window.location='{{ route("cliente.index") }}'">Criar cliente</button>
-        <button type="button" onclick="window.location='{{ route("produto.index") }}'">Criar produto</button>
+        <button type="button" onclick="window.location='{{ route("cliente.create") }}'">Criar cliente</button>
+        <button type="button" onclick="window.location='{{ route("produto.create") }}'">Criar produto</button>
     </body>
 </html>
