@@ -21,7 +21,7 @@
             <td>{{ $client->nome }}</td>
             <td>{{ $client->email }}</td>
             <td>{{ $client->created_at }}</td>
-            <td><button type="button" onclick="window.location='{{ route("cliente.create") }}'">Editar cliente</button></td>
+            <td><button type="button" onclick="window.location='{{ route("cliente.edit", ["id" => $client->id]) }}'">Editar cliente</button></td>
             <td><button type="button" onclick="window.location='{{ route("cliente.create") }}'">Deletar cliente</button></td>
         </tr>
         @endforeach

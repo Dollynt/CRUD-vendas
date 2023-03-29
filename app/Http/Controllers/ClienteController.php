@@ -59,17 +59,6 @@ class ClienteController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -77,7 +66,10 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+
+        return view('cliente.editar_cliente', compact('cliente'));
     }
 
     /**
@@ -89,7 +81,41 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       /* $request->validate([
+            'nome' => 'required',
+            'email' => 'nullable|email'
+
+        ]);
+
+        $cliente = Cliente::firstWhere('id', $id);
+
+        if(is_null($cliente)){
+            return response()->json([
+                'error' => [
+                    'message' => 'Client not found'
+                ]
+            ], 404);
+        }
+
+        $cliente->nome = $request->nome;
+        $cliente->resume = $request->resume;
+        $article->text = $request->text;
+        $article->save();
+
+
+
+        return response()->json([
+            'uuid'         => $article->uuid,
+            'title'        => $article->title,
+            'resume'       => $article->resume,
+            'text'         => $article->text,
+            'slug'         => $article->slug,
+            'registeredAt' => $article->registeredAt,
+            'User' => [
+                'uuid' => $user->uuid,
+                'username' => $user->username
+            ]
+        ], 200); */
     }
 
     /**
