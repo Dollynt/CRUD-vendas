@@ -68,6 +68,14 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::find($id);
 
+        if(!$cliente){
+            return response()->json([
+                'error' => [
+                    'message' => 'Client not found'
+                ]
+            ], 404);
+        }
+
 
         return view('cliente.editar_cliente', compact('cliente'));
     }
@@ -81,7 +89,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-       /* $request->validate([
+        $request->validate([
             'nome' => 'required',
             'email' => 'nullable|email'
 
@@ -89,7 +97,7 @@ class ClienteController extends Controller
 
         $cliente = Cliente::firstWhere('id', $id);
 
-        if(is_null($cliente)){
+        if(!$cliente){
             return response()->json([
                 'error' => [
                     'message' => 'Client not found'
@@ -98,24 +106,16 @@ class ClienteController extends Controller
         }
 
         $cliente->nome = $request->nome;
-        $cliente->resume = $request->resume;
-        $article->text = $request->text;
-        $article->save();
+        $cliente->email = $request->email;
+        $cliente->save();
 
 
 
         return response()->json([
-            'uuid'         => $article->uuid,
-            'title'        => $article->title,
-            'resume'       => $article->resume,
-            'text'         => $article->text,
-            'slug'         => $article->slug,
-            'registeredAt' => $article->registeredAt,
-            'User' => [
-                'uuid' => $user->uuid,
-                'username' => $user->username
-            ]
-        ], 200); */
+            'nome'         => $cliente->nome,
+            'email'        => $cliente->email,
+            'registeredAt' => $cliente->created_at
+        ], 200);
     }
 
     /**

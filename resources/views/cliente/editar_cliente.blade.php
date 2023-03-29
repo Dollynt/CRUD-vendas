@@ -7,17 +7,17 @@
     <title>Editar cliente</title>
 </head>
 <body>
-    <form method="PUT" action="/editar_cliente/{{ $cliente->id }}">
+    <form method="POST" action="{{ route('cliente.update', ['id' => $cliente->id]) }}">
         @csrf
-
+        @method('PUT')
         <div>
             <label for="nome">{{ $cliente->nome }}</label>
-            <input type="text" id="nome" name="nome" placeholder="{{ $cliente->nome }}" required>
+            <input type="text" id="nome" name="nome" value="{{ $cliente->nome }}" required>
         </div>
 
         <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email"  placeholder="{{ $cliente->email }}" required>
+            <input type="email" id="email" name="email"  value="{{ $cliente->email }}" required>
         </div>
 
         <button type="submit">Atualizar</button>
