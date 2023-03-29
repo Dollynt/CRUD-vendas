@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\VendaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,7 @@ Route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.inde
 Route::post('/criar_cliente', [ClienteController::class, 'store'])->name('cliente.store');
 Route::get('/editar_cliente/{id}', [ClienteController::class, 'edit'])->name('cliente.edit');
 Route::put('/editar_cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
+Route::delete('/deletar_cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
 
 
 
@@ -31,3 +33,7 @@ Route::get('/produtos', [ProdutoController::class, 'index'])->name('produto.inde
 Route::post('/criar_produto', [ProdutoController::class, 'store'])->name('produto.store');
 Route::get('/editar_produto/{id}', [ProdutoController::class, 'edit'])->name('produto.edit');
 Route::put('/editar_produto/{id}', [ProdutoController::class, 'update'])->name('produto.update');
+Route::delete('/deletar_produto/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');
+
+
+Route::get('/cadastrar_venda', [VendaController::class, 'create'])->name('venda.create');

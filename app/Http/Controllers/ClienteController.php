@@ -117,6 +117,9 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Cliente::firstWhere('id', $id);
+        $cliente->delete();
+
+        return redirect()->route('cliente.index')->with('success', 'User deleted with success');
     }
 }

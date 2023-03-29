@@ -7,6 +7,12 @@
     <title>Lista produtos</title>
 </head>
 <body>
+    @if(session('success'))
+    <div>
+        {{ session('success') }}
+    </div>
+    @endif
+
     <table>
         <tr>
             <td>ID</td>
@@ -22,7 +28,13 @@
             <td>{{ $product->preco }}</td>
             <td>{{ $product->quantidade }}</td>
             <td><button type="button" onclick="window.location='{{ route("produto.edit", ["id" => $product->id]) }}'">Editar produto</button></td>
-            <td><button type="button" onclick="window.location='{{ route("cliente.create") }}'">Deletar produto</button></td>
+            <td>
+                <form action="{{ route('produto.destroy', ['id' => $product->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Deletar produto</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>

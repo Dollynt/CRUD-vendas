@@ -115,6 +115,10 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produto = Produto::firstWhere('id', $id);
+        $produto->delete();
+
+        return redirect()->route('produto.index')->with('success', 'Product deleted with success');
+
     }
 }
