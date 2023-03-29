@@ -68,10 +68,15 @@ class ProdutoController extends Controller
     {
         $product = Produto::find($id);
 
-
+        if(!$product){
+            return response()->json([
+                'error' => [
+                    'message' => 'Product not found'
+                ]
+            ], 404);
+        }
         return view('produto.editar_produto', compact('product'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -81,7 +86,25 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|max:255',
+            'preco' => 'required|numeric|min:0',
+            'quantidade' => 'required|integer|min:0',
+
+        ]);
+
+        $produto = Produto::firstWhere('id', $id);
+        $produto->nome = $request->nome;
+        $produto->preco = $request->preco;
+        $produto->quantidade = $request->quantidade;
+        $produto->save();
+
+        return response()->json([
+            'nome'         => $produto->nome,
+            'preco'        => $produto->preco,
+            'quantidade'   => $produto->quantidade,
+            'registeredAt' => $produto->created_at
+        ], 201);
     }
 
     /**

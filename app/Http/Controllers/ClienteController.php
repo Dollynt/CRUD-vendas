@@ -96,15 +96,6 @@ class ClienteController extends Controller
         ]);
 
         $cliente = Cliente::firstWhere('id', $id);
-
-        if(!$cliente){
-            return response()->json([
-                'error' => [
-                    'message' => 'Client not found'
-                ]
-            ], 404);
-        }
-
         $cliente->nome = $request->nome;
         $cliente->email = $request->email;
         $cliente->save();
