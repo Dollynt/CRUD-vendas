@@ -59,17 +59,6 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -77,7 +66,10 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Produto::find($id);
+
+
+        return view('produto.editar_produto', compact('product'));
     }
 
     /**

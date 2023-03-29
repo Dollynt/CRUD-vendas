@@ -29,5 +29,5 @@ Route::put('/editar_cliente/{id}', [ClienteController::class, 'update'])->name('
 Route::get('/criar_produto', [ProdutoController::class, 'create'])->name('produto.create');
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produto.index');
 Route::post('/criar_produto', [ProdutoController::class, 'store'])->name('produto.store');
-Route::get('/editar_prodtuo/{id}', [ProdutoController::class, 'show'])->name('produto.show');
-Route::put('/editar_produto/{id}', [ProdutoController::class, 'edit'])->name('produto.edit');
+Route::get('/editar_produto/{id}', [ProdutoController::class, 'edit'])->name('produto.edit');
+Route::put('/editar_produto/{id}', [ProdutoController::class, 'update'])->name('produto.update');

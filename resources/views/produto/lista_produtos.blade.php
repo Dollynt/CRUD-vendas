@@ -21,7 +21,7 @@
             <td>{{ $product->nome }}</td>
             <td>{{ $product->preco }}</td>
             <td>{{ $product->quantidade }}</td>
-            <td><button type="button" onclick="window.location='{{ route("cliente.create") }}'">Editar produto</button></td>
+            <td><button type="button" onclick="window.location='{{ route("produto.edit", ["id" => $product->id]) }}'">Editar produto</button></td>
             <td><button type="button" onclick="window.location='{{ route("cliente.create") }}'">Deletar produto</button></td>
         </tr>
         @endforeach
