@@ -18,7 +18,7 @@
 </head>
 <body>
     <h1>Cadastro de Vendas</h1>
-    <form action="/vendas" method="POST">
+    <form action="/cadastrar_venda" method="POST">
         @csrf
         <div id="select-produtos">
         <label for="cliente">Cliente:</label>
@@ -60,7 +60,7 @@
 
 
     <div id="pagamento">
-        <p>Valor Total: R$ <span id="valor-total"></span></p>
+        <p>Valor Total: R$ <input  id="valor_total" readonly></p>
 
         <label for="forma_pagamento">Forma de Pagamento:</label>
         <select id="forma_pagamento" name="forma_pagamento" onchange="formaPagamento()">
@@ -106,7 +106,7 @@
         var parcelasInput = document.getElementById('parcela_valores').value
         var parcelasTable = document.getElementById('parcelas-table');
         var data = document.getElementById('data-vencimento-1').value
-        var valorTotal = parseFloat(document.getElementById('valor-total').innerHTML)
+        var valorTotal = parseFloat(document.getElementById('valor_total').innerHTML)
         var valorParcela = parseFloat(valorTotal / parcelasInput)
         console.log(valorParcela)
 
@@ -224,7 +224,7 @@ function continuar() {
 
     var table = document.getElementById('itens-venda')
     var numRows = table.rows.length - 1;
-    var totalDisplay = document.getElementById('valor-total')
+    var totalDisplay = document.getElementById('valor_total')
     var valorTotal = 0
     var valorTotalParcela = document.getElementById('valor-parcela-por-data-1')
     for (let row = 1; row <= numRows; row++) {
@@ -234,7 +234,7 @@ function continuar() {
         valorTotal += valor
     }
     console.log(valorTotal)
-    totalDisplay.innerText = valorTotal
+    totalDisplay.value = valorTotal
     valorTotalParcela.value = valorTotal
 
 

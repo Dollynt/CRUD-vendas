@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Produto;
+use App\Models\Vendas;
+use App\Models\ProdutoVenda;
+use App\Models\Parcela;
 use Carbon\Carbon;
 
 
@@ -44,7 +47,48 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // Retrieve all inputs from the form
+        $cliente = $request->input('cliente');
+        $produtos = $request->input('produtos');
+        $quantidades = $request->input('quantidades');
+        $valores = $request->input('valores');
+        $valor_total = $request->input('valor_total');
+        $forma_pagamento = $request->input('forma_pagamento');
+
+
+        $venda = new Vendas;
+        $venda->cliente_id = $cliente;
+        $venda->valor_total = $valor_total;
+        $venda->forma_pagamento = $forma_pagamento;
+
+        if ($forma_pagamento == 'cartao_credito') {
+
+            $parcelas = $request->input('parcelas');
+            $venda->parcelas = $parcelas;
+            $valor_parcela = $valor_total / $parcelas;
+            $venda->valor_parcela = $valor_parcela;
+            $datas = $request->input('datas');
+
+            for ($i = 0; $i < count($datas); $i++) {
+                $parcela = new Parcela;
+                $parcela->valor = $valor_parcela;
+                //$parcela->data_vencimento = $datas[$i];
+                $venda->parcelas()->save($parcela);
+            }
+        }
+
+        for ($i = 0; $i < count($produtos); $i++) {
+            $produto = new ProdutoVenda;
+            $produto->produto_id = $produtos[$i];
+            $produto->quantidade = $quantidades[$i];
+            $produto->valor = $valores[$i];
+            $venda->produtos()->save($produto);
+        }
+
+        $venda->save();
+
+        return redirect('/');
     }
 
     /**

@@ -37,3 +37,4 @@ Route::delete('/deletar_produto/{id}', [ProdutoController::class, 'destroy'])->n
 
 
 Route::get('/cadastrar_venda', [VendaController::class, 'create'])->name('venda.create');
+Route::post('/cadastrar_venda', [VendaController::class, 'store'])->name('venda.store');
