@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Produto;
+use Carbon\Carbon;
+
 
 class VendaController extends Controller
 {
@@ -27,8 +29,11 @@ class VendaController extends Controller
     {
         $clientes = Cliente::all();
         $produtos = Produto::all();
+        $datahj = Carbon::now();
+        $data = $datahj->addMonth()->format('Y-m-d');
 
-        return view('vendas.cadastro_vendas', compact('clientes', 'produtos'));
+
+        return view('vendas.cadastro_vendas', compact('clientes', 'produtos', 'data'));
     }
 
     /**
